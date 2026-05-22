@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devproject-app
+  namespace: devproject
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devproject-app
+  template:
+    metadata:
+      labels:
+        app: devproject-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "3000"
+    spec:
+      containers:
+        - name: devproject-app
+          image: drtcideie/devproject:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 3000
+          env:
+            - name: MONGO_URL
+              value: mongodb://devproject-mongo-service:27017/devprojectdb
+          resources:
+            requests:
+              cpu: "80m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"

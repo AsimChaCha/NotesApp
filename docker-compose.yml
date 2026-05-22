@@ -1,0 +1,21 @@
+services:
+  mongo:
+    image: mongo:6
+    container_name: devproject-mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - devproject-mongo-data:/data/db
+
+  app:
+    build: .
+    container_name: devproject-app
+    ports:
+      - "3000:3000"
+    environment:
+      MONGO_URL: mongodb://mongo:27017/devprojectdb
+    depends_on:
+      - mongo
+
+volumes:
+  devproject-mongo-data:

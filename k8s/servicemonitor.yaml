@@ -1,0 +1,15 @@
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: devproject-servicemonitor
+  namespace: devproject
+  labels:
+    release: prometheus
+spec:
+  selector:
+    matchLabels:
+      app: devproject-app
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: 15s

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: devproject-mongo-service
+  namespace: devproject
+spec:
+  selector:
+    app: devproject-mongo
+  ports:
+    - port: 27017
+      targetPort: 27017
+  type: ClusterIP

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: devproject-mongo-pvc
+  namespace: devproject
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: devproject-storage
+  resources:
+    requests:
+      storage: 1Gi

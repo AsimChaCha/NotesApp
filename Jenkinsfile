@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         DOCKER_CREDS = 'dockerhub-creds'
-        IMAGE_NAME = 'drtcideie/devproject'
+        IMAGE_NAME = 'jasminekowaski/notesapp-app'
         IMAGE_TAG = "${BUILD_NUMBER}"
         KUBE_NAMESPACE = 'devproject'
     }
